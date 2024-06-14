@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 const port = 5000;
 
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 const CLIENT_ID = process.env.VITE_CLIENT_ID;
 const CLIENT_SECRET = process.env.VITE_CLIENT_SECRET;
@@ -34,5 +34,9 @@ app.get('/auth/login', (req, res) => {
         state,
     } as Record<string, string>);
 
-    res.redirect('https://accounts.spotify.com/authorize/?', + authQueryParameters.toString())
+    res.redirect('https://accounts.spotify.com/authorize/?' + authQueryParameters.toString())
 })
+
+app.listen(port, () => {
+    console.log(`Listening at localhost:${port}`)
+});
