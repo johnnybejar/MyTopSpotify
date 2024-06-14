@@ -1,8 +1,11 @@
+import { useQueryClient } from '@tanstack/react-query';
 import Header from './components/Header';
 import spotify from "./public/spotify-logo-text.png";
 import "./styles/App.css";
 
 function App() {
+  const queryClient = useQueryClient();
+
   return (
     <div className='main'>
       <Header />
