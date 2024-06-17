@@ -1,0 +1,21 @@
+.autheticate {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 1em;
+    padding: .4em;
+    transition: 200ms;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+  }
+  .autheticate:hover {
+    background-color: #000000;
+    cursor: pointer;
+  }
+  
+  .spotify-logo {
+    max-width: 150px;
+    max-height: 2em;
+    margin-left: 2px;
+  }

@@ -4,23 +4,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.autheticate {
-  display: flex;
-  gap: 3px;
-  align-items: center;
-  border: 2px solid white;
-  border-radius: 1em;
-  padding: .4em;
-  transition: 200ms;
-}
-.autheticate:hover {
-  background-color: #000000;
-  cursor: pointer;
-}
-
-.spotify-logo {
-  max-width: 150px;
-  max-height: 2em;
-  margin-left: 2px;
-}
