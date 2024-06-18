@@ -7,16 +7,16 @@ import Dashboard from './components/Dashboard';
 function App() {
   const [token, setToken] = useState<string>('');
 
-  console.log(token);
-
   useEffect(() => {
     async function getToken() {
-      const res = await fetch("http://localhost:5000/auth/token");
+      const res = await fetch("/auth/token");
+      console.log(res);
       const json = await res.json();
       setToken(json.access_token);
     }
 
     getToken();
+    console.log(token);
   });
 
   return (
