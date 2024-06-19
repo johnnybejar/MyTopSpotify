@@ -10,12 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "got": "^14.4.1",
+    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/got": "^9.6.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

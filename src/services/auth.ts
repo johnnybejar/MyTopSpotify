@@ -1,3 +1,9 @@
+import axios from "axios";
+
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+console.log(CLIENT_ID);
+const redirectUri = "http://localhost:5173";
+
 function generateRandomString(length: number) {
     let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -5,6 +11,7 @@ function generateRandomString(length: number) {
     for (let i = 0; i < length; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
+
     return text;
 }
 
@@ -15,7 +22,7 @@ async function generateCodeChallenge(plainData: string) {
 
     return btoa(String.fromCharCode(...new Uint8Array(digest)))
         .replace(/=/g, '')
-        .replace(/\+/g, '-')
+        .replace(/\+/g, '-') 
         .replace(/\//g, '_');
 }
 
@@ -23,14 +30,11 @@ function createAuthorizationUri() {
     const codeVerifier  = generateRandomString(64);
     const codeChallengePromise = generateCodeChallenge(codeVerifier);
     let codeChallenge = "";
-    codeChallengePromise.then(val => {codeChallenge = val})
+    codeChallengePromise.then(val => codeChallenge = val);
     const state = generateRandomString(16);
 
     localStorage.setItem("CodeVerifier", codeVerifier);
     localStorage.setItem("State", state);
-
-    const CLIENT_ID = import.meta.env.CLIENT_ID;
-    const redirectUri = "http://localhost:5173";
 
     const scope = "user-read-private user-read-email user-read-currently-playing user-read-recently-played user-top-read playlist-read-collaborative";
     const authUrl = new URL("https://accounts.spotify.com/authorize");
@@ -49,7 +53,6 @@ function createAuthorizationUri() {
 }
 
 async function generateToken(state: string, code: string) {
-    const CLIENT_ID = import.meta.env.CLIENT_ID;
     const savedState = localStorage.getItem("State");
     localStorage.removeItem("State");
 
@@ -57,23 +60,37 @@ async function generateToken(state: string, code: string) {
         return { error: true };
     }
 
-    const postConfig = {
-        headers: {
-            'content-type': 'application/x-www-form-urlencoded'
+    // const postConfig = {
+    //     headers: {
+    //         'content-type': 'application/x-www-form-urlencoded'
+    //     }
+    // };
+
+    // const parameters = {
+    //     client_id: CLIENT_ID,
+    //     grant_type: 'authorization_code',
+    //     code,
+    //     redirect_uri: "http://localhost:5173",
+    //     code_verifier: localStorage.getItem("CodeVerifier")
+    // }
+
+    const res = await axios.post(
+        "https://accounts.spotify.com/api/token", 
+        { 
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded'
+            },
+            searchParams: {
+                client_id: CLIENT_ID,
+                grant_type: 'authorization_code',
+                code,
+                redirect_uri: redirectUri,
+                code_verifier: localStorage.getItem("CodeVerifier")
+            }
         }
-    };
+    );
 
-    const parameters = {
-        client_id: CLIENT_ID,
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: "http://localhost:5173",
-        code_verifier: localStorage.getItem("CodeVerifier")
-    }
-
-    try {
-        
-    }
+    return res;
 }
 
 function saveToken(tokenData: Record<string, string>) {
@@ -85,7 +102,9 @@ function saveToken(tokenData: Record<string, string>) {
 }
 
 function getToken() {
-    return localStorage.getItem("AccessTokenKey");
+    const token = localStorage.getItem("AccessTokenKey") || "";
+    
+    return token;
 }
 
 const Auth = {
