@@ -11,5 +11,12 @@
 .title {
     font-size: 1.6em;
     margin-left: .7em;
+    color: white;
+    border-bottom: 2px solid transparent;
+    transition: 200ms;
+}
+.title:hover {
+    color: white;
+    border-bottom: 2px solid white;
 }
 

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
-console.log(CLIENT_ID);
 const redirectUri = "http://localhost:5173";
 
 function generateRandomString(length: number) {
@@ -36,7 +35,7 @@ function createAuthorizationUri() {
     localStorage.setItem("CodeVerifier", codeVerifier);
     localStorage.setItem("State", state);
 
-    const scope = "user-read-private user-read-email user-read-currently-playing user-read-recently-played user-top-read playlist-read-collaborative";
+    const scope = "streaming user-read-private user-read-email user-read-currently-playing user-read-recently-played user-top-read playlist-read-collaborative";
     const authUrl = new URL("https://accounts.spotify.com/authorize");
 
     const params = {
@@ -57,22 +56,8 @@ async function generateToken(state: string, code: string) {
     localStorage.removeItem("State");
 
     if (state !== savedState) {
-        return { error: true };
+        return null;
     }
-
-    // const postConfig = {
-    //     headers: {
-    //         'content-type': 'application/x-www-form-urlencoded'
-    //     }
-    // };
-
-    // const parameters = {
-    //     client_id: CLIENT_ID,
-    //     grant_type: 'authorization_code',
-    //     code,
-    //     redirect_uri: "http://localhost:5173",
-    //     code_verifier: localStorage.getItem("CodeVerifier")
-    // }
 
     const res = await axios.post(
         "https://accounts.spotify.com/api/token", 
@@ -97,8 +82,7 @@ function saveToken(tokenData: Record<string, string>) {
     const { accessToken, expiresIn, refreshToken } = tokenData;
 
     localStorage.setItem("AccessTokenKey", accessToken);
-    localStorage.setItem("AccessTokenExpiresIn", expiresIn);
-    localStorage.setItem("AccessTokenRefreshKey", refreshToken);
+    localStorage.setItem("RefreshToken", refreshToken);
 }
 
 function getToken() {

@@ -4,6 +4,8 @@ import Auth from './services/auth';
 import "./styles/App.css";
 import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Callback from './components/Callback';
 
 function App() {
   const [token, setToken] = useState<string>('');
@@ -17,8 +19,11 @@ function App() {
 
   return (
     <div className='main'>
-      <Header />
-      { token ? <Dashboard /> : <Login /> }
+        <Header />
+        <Routes>
+          <Route path='/' element={ token ? <Dashboard /> : <Login /> } />
+          <Route path="/callback" element={<Callback />} />
+        </Routes>
     </div>
   );
 }
