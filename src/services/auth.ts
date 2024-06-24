@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
-const redirectUri = "http://localhost:5173";
+const redirectUri = "http://localhost:5173/callback";
 
 function generateRandomString(length: number) {
     let text = '';
@@ -25,12 +25,10 @@ async function generateCodeChallenge(plainData: string) {
         .replace(/\//g, '_');
 }
 
-function createAuthorizationUri() {
+async function createAuthorizationUri() {
     const codeVerifier  = generateRandomString(64);
-    const codeChallengePromise = generateCodeChallenge(codeVerifier);
-    let codeChallenge = "";
-    codeChallengePromise.then(val => codeChallenge = val);
-    const state = generateRandomString(16);
+    const codeChallenge =  await generateCodeChallenge(codeVerifier);
+    const state = generateRandomString(36);
 
     localStorage.setItem("CodeVerifier", codeVerifier);
     localStorage.setItem("State", state);
@@ -44,7 +42,8 @@ function createAuthorizationUri() {
         scope,
         code_challenge_method: "S256",
         code_challenge: codeChallenge,
-        redirect_uri: redirectUri
+        redirect_uri: redirectUri,
+        state
     } as Record<string, string>;
 
     authUrl.search = new URLSearchParams(params).toString();
@@ -53,40 +52,44 @@ function createAuthorizationUri() {
 
 async function generateToken(state: string, code: string) {
     const savedState = localStorage.getItem("State");
+    const codeVerifier = localStorage.getItem("CodeVerifier");
     localStorage.removeItem("State");
 
     if (state !== savedState) {
         return null;
     }
 
-    const res = await axios.post(
-        "https://accounts.spotify.com/api/token", 
-        { 
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            searchParams: {
-                client_id: CLIENT_ID,
-                grant_type: 'authorization_code',
-                code,
-                redirect_uri: redirectUri,
-                code_verifier: localStorage.getItem("CodeVerifier")
-            }
+    const parameters = new URLSearchParams({
+        client_id: CLIENT_ID,
+        grant_type: 'authorization_code',
+        code,
+        redirect_uri: redirectUri,
+        code_verifier: codeVerifier
+    } as Record<string, string>);
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
+    }
+
+    const res = await axios.post(
+        "https://accounts.spotify.com/api/token",
+        parameters.toString(), config
     );
 
-    return res;
+    return res.data;
 }
 
 function saveToken(tokenData: Record<string, string>) {
-    const { accessToken, expiresIn, refreshToken } = tokenData;
+    const { access_token, refresh_token } = tokenData;
 
-    localStorage.setItem("AccessTokenKey", accessToken);
-    localStorage.setItem("RefreshToken", refreshToken);
+    localStorage.setItem("AccessToken", access_token);
+    localStorage.setItem("RefreshToken", refresh_token);
 }
 
 function getToken() {
-    const token = localStorage.getItem("AccessTokenKey") || "";
+    const token = localStorage.getItem("AccessToken") || "";
     
     return token;
 }

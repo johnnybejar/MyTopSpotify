@@ -4,3 +4,8 @@
   justify-content: center;
   align-items: center;
 }
+
+.callback-error {
+  font-size: 1.5em;
+  color: rgb(255, 64, 64)
+}

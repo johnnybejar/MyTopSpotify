@@ -4,7 +4,7 @@ import Auth from './services/auth';
 import "./styles/App.css";
 import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Callback from './components/Callback';
 
 function App() {
