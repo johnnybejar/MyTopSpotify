@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Auth from "../services/auth";
+import { useToken } from "../context/TokenProvider";
 
 function Callback() {
     const [msg, setMsg] = useState("")
+    const {token, setToken} = useToken();
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code')!;
     const state = urlParams.get('state')!;
@@ -16,12 +18,12 @@ function Callback() {
         }
 
         Auth.generateToken(state, code).then((tokenData: Record<string, string>) => {
-            if (tokenData.error) {
-                setMsg("Error retrieving access token")
-            } else {
+            try {
                 Auth.saveToken(tokenData);
-                console.log(tokenData)
-                navigate("/")
+                setToken(tokenData.access_token);
+                navigate("/");
+            } catch {
+                setMsg("Error retrieving access token")
             }
         })
     }, [])

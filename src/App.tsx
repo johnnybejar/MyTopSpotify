@@ -6,16 +6,16 @@ import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard';
 import { Route, Routes } from 'react-router-dom';
 import Callback from './components/Callback';
+import { useToken } from './context/TokenProvider';
 
 function App() {
-  const [token, setToken] = useState<string>('');
+  const {token, setToken} = useToken();
 
   useEffect(() => {
     const t = Auth.getToken();
 
     setToken(t);
-    
-  }, []);
+  }, [token]);
 
   return (
     <div className='main'>
