@@ -23,5 +23,13 @@
 
 .logout {
     width: 40px;
+    padding: .4em;
+    border-radius: 5px;
+    transition: 200ms;
+}
+
+.logout:hover {
+    cursor: pointer;
+    background-color: #242424
 }
 
