@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './styles/index.css';
-import { AuthProvider } from './context/AuthProvider.tsx';
+import { TokenProvider } from './context/TokenProvider.tsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+      <TokenProvider>
         <App />
-      </AuthProvider>
+      </TokenProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );
