@@ -3,6 +3,7 @@
     height: 4em;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #3a3a3a;
     border-bottom: 2px solid white;
     margin-bottom: .5em;
@@ -18,5 +19,9 @@
 .title:hover {
     color: white;
     border-bottom: 2px solid white;
+}
+
+.logout {
+    width: 40px;
 }
 
