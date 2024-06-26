@@ -23,7 +23,7 @@ function Callback() {
                 setToken(tokenData.access_token);
                 navigate("/");
             } catch {
-                setMsg("Error retrieving access token")
+                setTimeout(() => {setMsg("Error retrieving access token")}, 2000);
             }
         })
     }, [])
