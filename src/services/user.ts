@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function getProfile() {
+async function getProfile(): Promise<User | null> {
     let accessToken = localStorage.getItem("AccessToken");
 
     if (accessToken) {
@@ -16,8 +16,24 @@ async function getProfile() {
     }
 }
 
+async function getUserTopItems(type: string, timeRange: string) {
+    let accessToken = localStorage.getItem("AccessToken");
+
+    if (accessToken) {
+        const res = await axios.get("https://api.spotify.com/v1/me/top/" + type + "?time_range=" + timeRange + "&limit=50", {
+            headers: {
+                Authorization: "Bearer " + accessToken
+            }
+        })
+        return res.data
+    } else {
+        return null;
+    }
+}
+
 const User = {
-    getProfile
+    getProfile,
+    getUserTopItems
 };
 
 export default User;

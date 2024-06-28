@@ -13,12 +13,22 @@ type User = {
     uri: string;
 }
 
-type UserTopItems = {
+type UserTopTracks = {
     href: string;
     limit: number;
     next: string;
     offset: number;
     previous: unknown;
     total: number;
-    items: Artist[] | Track[];
+    items: Track[];
+}
+
+type UserTopArtists = {
+    href: string;
+    limit: number;
+    next: string;
+    offset: number;
+    previous: unknown;
+    total: number;
+    items: Artist[];
 }

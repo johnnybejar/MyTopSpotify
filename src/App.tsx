@@ -1,11 +1,11 @@
 import Header from './components/Header';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Auth from './services/auth';
 import "./styles/App.css";
-import { useEffect, useState } from 'react';
-import Dashboard from './components/Dashboard';
+import { useEffect } from 'react';
+import Dashboard from './pages/Dashboard';
 import { Route, Routes } from 'react-router-dom';
-import Callback from './components/Callback';
+import Callback from './pages/Callback';
 import { useToken } from './context/TokenProvider';
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     const t = Auth.getToken();
-
     setToken(t);
   }, [token]);
 
