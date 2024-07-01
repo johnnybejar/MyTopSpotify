@@ -1,0 +1,38 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+}
+
+.db-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding-bottom: .5em;
+    border-bottom: 2px solid white;
+}
+
+.db-header > a {
+    width: 51px;
+    height: 51px;
+}
+
+.db-img {
+    border: 2px solid transparent;
+    border-radius: .5em;
+    width: 50px;
+    height: 50px;
+    transition: 200ms;
+}
+
+.db-img:hover {
+    border-color: white;
+}
+
+.db-greet {
+    font-size: 1.3em;
+    font-weight: bold;
+}

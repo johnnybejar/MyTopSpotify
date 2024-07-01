@@ -1,56 +1,71 @@
 import { useEffect, useState } from "react";
 import User from "../services/user";
 import Track from "../components/Track";
+import { toast } from "react-toastify";
+import { BounceLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
+import { useToken } from "../context/TokenProvider";
+import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
+  const [error, setError] = useState(false);
   const [topArtists, setTopArtists] = useState<UserTopArtists>({} as UserTopArtists);
   const [topTracks, setTopTracks] = useState<UserTopTracks>({} as UserTopTracks);
   const [isLoading, setIsLoading] = useState(true);
+  const { token, setToken } = useToken();
+  const navigate = useNavigate();
 
   async function getDashboard() {
     const userPromise = User.getProfile();
-    userPromise.then((u) => {
-      if (u) {
-        setUser(u)
-      }
-    });
-
     const topArtistsPromise = User.getUserTopItems("artists", "long_term");
-    topArtistsPromise.then((res) => {
-      if (res) {
-        setTopArtists(res);
-      }
-    })
-
     const topTracksPromise = User.getUserTopItems("tracks", "long_term");
-    topTracksPromise.then((res) => {
-      if (res) {
-        setTopTracks(res);
-      }
 
-      setIsLoading(false);
-    })
+    Promise.all([userPromise, topArtistsPromise, topTracksPromise]).then((results) => {
+      // results = [user, topArtists, topTracks]
+      if (results[0] && results[1] && results[2]) {
+        setUser(results[0]);
+        setTopArtists(results[1]);
+        setTopTracks(results[2]);
+      }
+    }).catch((err) => {
+      setError(true)
+      if (err && err.response.status === 401) {
+        toast.error("Invalid token, try re-authenticating")
+        localStorage.clear();
+        setToken("");
+      } else {
+        toast.error("An error occurred...");
+      }
+    }).finally(() => setIsLoading(false));
   }
 
   useEffect(() => {
     getDashboard();
-    console.log(topTracks)
-    console.log("render");
-  }, [])
+    console.log("Dashboard Render");
+  }, []);
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <BounceLoader color="white" />;
+  }
+
+  if (error) {
+    return <span>Cannot display dashboard due to an error, try re-authenticating or try again later</span>
   }
 
   return (
-    <>
-      <div>Hello, {user.display_name}</div>
+    <div className="dashboard">
+      <div className="db-header">
+        <a href={user.external_urls.spotify} target="_blank">
+          <img src={user.images[0].url} className="db-img"  alt="User" />
+        </a>
+        <span className="db-greet">Hello, {user.display_name}</span>
+      </div>
       {/* {topTracks.items.map((track) => {
         return <Track key={track.id} {...track} />
       })} */}
       <Track key={topTracks.items[0].id} {...topTracks.items[0]} />
-    </>
+    </div>
   );
 }
 
