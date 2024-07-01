@@ -61,10 +61,21 @@ function Dashboard() {
         </a>
         <span className="db-greet">Hello, {user.display_name}</span>
       </div>
-      {/* {topTracks.items.map((track) => {
-        return <Track key={track.id} {...track} />
-      })} */}
-      <Track key={topTracks.items[0].id} {...topTracks.items[0]} />
+      <div>
+        <div>
+          <span>Top Tracks</span>
+        </div>
+        <div className="track-list">
+          {topTracks.items.map((track, index) => {
+            const props = {
+              track,
+              rank: index+1
+            }
+            return <Track key={track.id} {...props} />
+          })}
+        </div>
+      </div>
+      {/* <Track key={topTracks.items[0].id} {...topTracks.items[0]} /> */}
     </div>
   );
 }

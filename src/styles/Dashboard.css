@@ -36,3 +36,8 @@
     font-size: 1.3em;
     font-weight: bold;
 }
+
+.track-list {
+    border: 2px solid white;
+    border-radius: 4px;
+}

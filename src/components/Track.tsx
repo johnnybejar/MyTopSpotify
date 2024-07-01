@@ -1,10 +1,16 @@
 import "../styles/Track.css"
 
-function Track(track: Track) {
-  
+type TrackProps = {
+  track: Track;
+  rank: number;
+}
+
+function Track(props: TrackProps) {
+  const { track, rank } = props;
+
   return (
     <div className='track'>
-        {track.name}
+        {rank} {track.name} - {track.artists[0].name}
     </div>
   );
 }
