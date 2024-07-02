@@ -1,6 +1,54 @@
 .track {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     padding: .2em;
     padding-bottom: .3em;
     border-bottom: 2px solid white;
     border-radius: 4px;
+}
+
+.track-rank {
+    width: 1em;
+    text-align: center;
+}
+
+.track-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-name {
+    font-weight: bold;
+    transition: 200ms;
+    color: rgba(255, 255, 255, 0.9);
+}
+.track-name:hover {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
+.track-artist {
+    font-size: .7em;
+    color: rgb(169, 169, 169);
+    transition: 200ms;
+}
+.track-artist:hover {
+    color: rgba(169, 169, 169, 0.6);
+}
+
+.track-image-href {
+    width: 50px;
+    height: 50px;
+}
+
+.track-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: 200ms;
+}
+
+.track-image:hover {
+    opacity: 60%;
 }
