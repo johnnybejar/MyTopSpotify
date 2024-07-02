@@ -81,6 +81,28 @@ async function generateToken(state: string, code: string) {
     return res.data;
 }
 
+async function refreshToken() {
+    const refreshToken = localStorage.getItem("RefreshToken");
+
+    const body = new URLSearchParams({
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+        client_id: CLIENT_ID
+    } as Record<string, string>);
+
+    const config = {
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    }
+
+    const res = await axios.post("https://accounts.spotify.com/api/token",
+        body.toString(), config
+    );
+
+    return res.data;
+}
+
 function saveToken(tokenData: Record<string, string>) {
     const { access_token, refresh_token } = tokenData;
 
@@ -97,6 +119,7 @@ function getToken() {
 const Auth = {
     createAuthorizationUri,
     generateToken,
+    refreshToken,
     saveToken,
     getToken
 };

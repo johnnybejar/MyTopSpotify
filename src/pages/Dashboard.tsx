@@ -6,6 +6,7 @@ import { BounceLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../context/TokenProvider";
 import "../styles/Dashboard.css";
+import Auth from "../services/auth";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
@@ -31,9 +32,13 @@ function Dashboard() {
     }).catch((err) => {
       setError(true)
       if (err && err.response.status === 401) {
-        toast.error("Invalid token, try re-authenticating")
-        localStorage.clear();
-        setToken("");
+        toast("Expired/Revoked token, re-authenticating...")
+        const res = Auth.refreshToken();
+        res.then((data) => {
+          setToken(data.access_token);
+          Auth.saveToken(data);
+          setError(false);
+        })
       } else {
         toast.error("An error occurred...");
       }
