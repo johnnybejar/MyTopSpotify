@@ -52,3 +52,10 @@
 .track-image:hover {
     opacity: 60%;
 }
+
+.track-button {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    color: white;
+}

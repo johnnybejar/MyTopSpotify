@@ -1,0 +1,14 @@
+.tracks-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tracks-time-range {
+    display: flex;
+    gap: 4px;
+}
+
+.track-list {
+    border: 2px solid white;
+    border-radius: 4px;
+}

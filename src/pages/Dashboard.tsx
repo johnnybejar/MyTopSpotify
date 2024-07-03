@@ -3,31 +3,27 @@ import User from "../services/user";
 import Track from "../components/Track";
 import { toast } from "react-toastify";
 import { BounceLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
 import { useToken } from "../context/TokenProvider";
-import "../styles/Dashboard.css";
 import Auth from "../services/auth";
+import "../styles/Dashboard.css";
+import TopTracks from "../components/TopTracks";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
   const [error, setError] = useState(false);
   const [topArtists, setTopArtists] = useState<UserTopArtists>({} as UserTopArtists);
-  const [topTracks, setTopTracks] = useState<UserTopTracks>({} as UserTopTracks);
   const [isLoading, setIsLoading] = useState(true);
-  const { token, setToken } = useToken();
-  const navigate = useNavigate();
-
+  const { setToken } = useToken();
+   
   async function getDashboard() {
     const userPromise = User.getProfile();
-    const topArtistsPromise = User.getUserTopItems("artists", "long_term");
-    const topTracksPromise = User.getUserTopItems("tracks", "long_term");
+    const topArtistsPromise = User.getUserTopItems("artists", "short_term");
 
-    Promise.all([userPromise, topArtistsPromise, topTracksPromise]).then((results) => {
+    Promise.all([userPromise, topArtistsPromise]).then((results) => {
       // results = [user, topArtists, topTracks]
-      if (results[0] && results[1] && results[2]) {
+      if (results[0] && results[1]) {
         setUser(results[0]);
         setTopArtists(results[1]);
-        setTopTracks(results[2]);
       }
     }).catch((err) => {
       setError(true)
@@ -67,20 +63,8 @@ function Dashboard() {
         <span className="db-greet">Hello, {user.display_name}</span>
       </div>
       <div>
-        <div>
-          <span>Top Tracks</span>
-        </div>
-        <div className="track-list">
-          {topTracks.items.map((track, index) => {
-            const props = {
-              track,
-              rank: index+1
-            }
-            return <Track key={track.id} {...props} />
-          })}
-        </div>
+        <TopTracks />
       </div>
-      {/* <Track key={topTracks.items[0].id} {...topTracks.items[0]} /> */}
     </div>
   );
 }
