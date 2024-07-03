@@ -1,14 +1,34 @@
+.top-tracks {
+    width: 500px;
+}
+
 .tracks-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 4px;
 }
 
 .tracks-time-range {
     display: flex;
     gap: 4px;
+    margin: 0;
 }
 
 .track-list {
     border: 2px solid white;
     border-radius: 4px;
+}
+
+.track-time-active, .track-time-inactive {
+    list-style: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: 200ms;
+}
+.track-time-active:hover, .track-time-inactive:hover {
+    border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+.track-time-active {
+    border-bottom-color: rgba(255, 255, 255, 0.9);
 }
