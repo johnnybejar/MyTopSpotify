@@ -16,8 +16,8 @@ function TopTracks() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const { setToken } = useToken();
-  const [audio, _] = useState(new Audio());
-  
+  const [audio] = useState(new Audio());
+
   async function getTracks() {
     const topTracksPromise = User.getUserTopItems("tracks", active);
 

@@ -10,22 +10,18 @@ type TrackProps = {
 
 function Track(props: TrackProps) {
   const { track, rank, playing, setPlaying, audio } = props;
-  // const audio = new Audio(track.preview_url);
-  // audio.preload = "none";
-  // audio.volume = 0.05;
-  // console.log(audio.paused == false);
 
   return (
     <div className='track'>
         <span className="track-rank">{rank}</span>
-        <a href={track.album.href} className="track-image-href" target="_blank">
+        <a href={track.album.external_urls.spotify} className="track-image-href" target="_blank">
           <img src={track.album.images[1].url} alt="" className="track-image" />
         </a>
         <div className="track-details">
           <a className="track-name" href={track.external_urls.spotify} target="_blank">
             {track.name}
           </a>
-          <a href={track.artists[0].external_urls.spotify} className="track-artist">{track.artists[0].name}</a>
+          <a href={track.artists[0].external_urls.spotify} className="track-artist" target="_blank">{track.artists[0].name}</a>
         </div>
         <svg className="track-button" viewBox="0 0 60 60" onClick={() => {
           if (playing === rank-1) {
