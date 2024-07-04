@@ -58,6 +58,7 @@
     height: 30px;
     margin-left: auto;
     color: white;
+    cursor: pointer;
 }
 
 .track-preview {

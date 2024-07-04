@@ -16,6 +16,7 @@ function TopTracks() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const { setToken } = useToken();
+  const [audio, _] = useState(new Audio());
   
   async function getTracks() {
     const topTracksPromise = User.getUserTopItems("tracks", active);
@@ -52,6 +53,12 @@ function TopTracks() {
       getTracks();
     }
     setPlaying(-1);
+    audio.preload = "none";
+    audio.volume = 0.05;
+
+    // Needed to pause the audio when switching time ranges
+    audio.pause();
+
     console.log("TopTracks render");
   }, [active])
 
@@ -100,7 +107,8 @@ function TopTracks() {
                 track,
                 rank: index+1,
                 playing,
-                setPlaying
+                setPlaying,
+                audio
               }
               return <Track key={track.id} {...props} />
             }) : topTracksLong.items.map((track, index) => {
@@ -108,7 +116,8 @@ function TopTracks() {
                 track,
                 rank: index+1,
                 playing,
-                setPlaying
+                setPlaying,
+                audio
               }
               return <Track key={track.id} {...props} />
             })}

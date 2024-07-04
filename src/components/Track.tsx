@@ -5,10 +5,15 @@ type TrackProps = {
   rank: number;
   playing: number;
   setPlaying: React.Dispatch<React.SetStateAction<number>>;
+  audio: HTMLAudioElement;
 }
 
 function Track(props: TrackProps) {
-  const { track, rank, playing, setPlaying } = props;
+  const { track, rank, playing, setPlaying, audio } = props;
+  // const audio = new Audio(track.preview_url);
+  // audio.preload = "none";
+  // audio.volume = 0.05;
+  // console.log(audio.paused == false);
 
   return (
     <div className='track'>
@@ -24,9 +29,12 @@ function Track(props: TrackProps) {
         </div>
         <svg className="track-button" viewBox="0 0 60 60" onClick={() => {
           if (playing === rank-1) {
-            setPlaying(-1)
+            setPlaying(-1);
+            audio.pause();
           } else {
-            setPlaying(rank-1)
+            setPlaying(rank-1);
+            audio.src = track.preview_url;
+            audio.play();
           }
         }}>
           {playing === rank-1 ? (
@@ -37,7 +45,7 @@ function Track(props: TrackProps) {
             ) : 
             <polygon points="0,0 50,30 0,60" fill="#ffffffe6" fillOpacity={.9} />
           }
-          <audio className="track-preview" src={track.preview_url} preload="none"></audio>
+          {/* <audio id={"track-preview-" + rank} src={track.preview_url} preload="none"></audio> */}
         </svg>
     </div>
   );
