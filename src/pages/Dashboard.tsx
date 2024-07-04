@@ -50,7 +50,7 @@ function Dashboard() {
     return <BounceLoader color="white" />;
   }
 
-  if (error || !user) {
+  if (error || Object.keys(user).length === 0) {
     return <span>Cannot display dashboard due to an error, try re-authenticating or try again later</span>
   }
 
