@@ -3,11 +3,12 @@ import "../styles/Track.css"
 type TrackProps = {
   track: Track;
   rank: number;
-  active: boolean;
+  playing: number;
+  setPlaying: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function Track(props: TrackProps) {
-  const { track, rank, active } = props;
+  const { track, rank, playing, setPlaying } = props;
 
   return (
     <div className='track'>
@@ -21,15 +22,22 @@ function Track(props: TrackProps) {
           </a>
           <a href={track.artists[0].external_urls.spotify} className="track-artist">{track.artists[0].name}</a>
         </div>
-        <svg className="track-button" viewBox="0 0 60 60">
-          {active ? (
+        <svg className="track-button" viewBox="0 0 60 60" onClick={() => {
+          if (playing === rank-1) {
+            setPlaying(-1)
+          } else {
+            setPlaying(rank-1)
+          }
+        }}>
+          {playing === rank-1 ? (
             <>
-              <polygon points="0,0 15,0 15,60 0,60" />
-              <polygon points="25,0 40,0 40,60 25,60" />
+              <polygon points="0,0 15,0 15,60 0,60" fill="#ffffffe6" />
+              <polygon points="25,0 40,0 40,60 25,60" fill="#ffffffe6" />
             </>
             ) : 
-            <polygon points="0,0 50,30 0,60" fill="white" fillOpacity={.9} />
+            <polygon points="0,0 50,30 0,60" fill="#ffffffe6" fillOpacity={.9} />
           }
+          <audio className="track-preview" src={track.preview_url} preload="none"></audio>
         </svg>
     </div>
   );

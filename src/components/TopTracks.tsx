@@ -11,6 +11,8 @@ function TopTracks() {
   const [topTracksShort, setTopTracksShort] = useState<UserTopTracks>({} as UserTopTracks);
   const [topTracksLong, setTopTracksLong] = useState<UserTopTracks>({} as UserTopTracks);
   const [active, setActive] = useState("short_term");
+  // -1 is the default value for playing, meaning no track is playing
+  const [playing, setPlaying] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const { setToken } = useToken();
@@ -49,6 +51,7 @@ function TopTracks() {
     ) {
       getTracks();
     }
+    setPlaying(-1);
     console.log("TopTracks render");
   }, [active])
 
@@ -96,14 +99,16 @@ function TopTracks() {
               const props = {
                 track,
                 rank: index+1,
-                active: false
+                playing,
+                setPlaying
               }
               return <Track key={track.id} {...props} />
             }) : topTracksLong.items.map((track, index) => {
               const props = {
                 track,
                 rank: index+1,
-                active: false
+                playing,
+                setPlaying
               }
               return <Track key={track.id} {...props} />
             })}
