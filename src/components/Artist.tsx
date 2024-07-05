@@ -9,7 +9,7 @@ function Artist(props: ArtistProps) {
   return (
     <div className='track'>
         <span className="track-rank">{rank}</span>
-        <a href={artist.href} className="track-image-href" target="_blank">
+        <a href={artist.external_urls.spotify} className="track-image-href" target="_blank">
           <img src={artist.images[0].url} alt="" className="track-image" />
         </a>
         <div className="track-details">

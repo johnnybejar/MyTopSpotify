@@ -55,7 +55,7 @@ function TopArtists() {
   return (
     <div className="top-tracks">
       <div className="tracks-header">
-        <span>Top Tracks</span>
+        <span className="tracks-title">Top Artists</span>
         <ul className="tracks-time-range">
           <li
             className={active === "long_term" ? "track-time-active" : "track-time-inactive"}

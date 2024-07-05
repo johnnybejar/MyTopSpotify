@@ -36,3 +36,15 @@
     font-size: 1.3em;
     font-weight: bold;
 }
+
+.top-items {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+@media screen and (max-width: 1050px)  {
+    .top-items {
+        flex-direction: column;
+    }
+}

@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 import { BounceLoader } from "react-spinners";
 import { useToken } from "../context/TokenProvider";
 import Auth from "../services/auth";
-import "../styles/Dashboard.css";
 import TopTracks from "../components/TopTracks";
 import TopArtists from "../components/TopArtists";
+import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)

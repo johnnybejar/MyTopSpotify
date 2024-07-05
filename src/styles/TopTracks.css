@@ -8,6 +8,10 @@
     margin-bottom: 4px;
 }
 
+.tracks-title {
+    font-weight: bold;
+}
+
 .tracks-time-range {
     display: flex;
     gap: 4px;
