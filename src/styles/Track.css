@@ -6,6 +6,7 @@
     padding-bottom: .3em;
     border-bottom: 2px solid white;
     border-radius: 4px;
+    font-size: 1.5em;
 }
 
 .track-rank {
@@ -48,7 +49,6 @@
     border-radius: 50%;
     transition: 200ms;
 }
-
 .track-image:hover {
     opacity: 60%;
 }
@@ -59,8 +59,8 @@
     margin-left: auto;
     color: white;
     cursor: pointer;
+    transition: 200ms;
 }
-
-.track-preview {
-    
+.track-button:hover {
+    opacity: .5;
 }
