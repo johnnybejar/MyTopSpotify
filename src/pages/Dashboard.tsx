@@ -6,6 +6,7 @@ import { useToken } from "../context/TokenProvider";
 import Auth from "../services/auth";
 import "../styles/Dashboard.css";
 import TopTracks from "../components/TopTracks";
+import TopArtists from "../components/TopArtists";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
@@ -61,8 +62,9 @@ function Dashboard() {
         </a>
         <span className="db-greet">Hello, {user.display_name}</span>
       </div>
-      <div>
+      <div className="top-items">
         <TopTracks />
+        <TopArtists />
       </div>
     </div>
   );

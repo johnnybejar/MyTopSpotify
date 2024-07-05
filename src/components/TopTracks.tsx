@@ -52,12 +52,12 @@ function TopTracks() {
     ) {
       getTracks();
     }
-    setPlaying(-1);
     audio.preload = "none";
     audio.volume = 0.05;
 
-    // Needed to pause the audio when switching time ranges
+    // Needed to pause the audio and reset playing when switching time ranges
     audio.pause();
+    setPlaying(-1);
 
     console.log("TopTracks render");
   }, [active])
