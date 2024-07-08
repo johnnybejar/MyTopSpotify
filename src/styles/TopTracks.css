@@ -5,6 +5,7 @@
 .tracks-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 4px;
     font-size: 2em;
 }
@@ -13,8 +14,67 @@
     font-weight: bold;
 }
 
+.top-info {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: .6em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    list-style: none;
+    cursor: text;
+}
+
+.top-info-tooltip {
+    /* visibility: hidden; */
+    width: 220px;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0);
+    text-align: center;
+    padding: .2em .3em;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    transition: 200ms;
+}
+
+.top-info-tooltip {
+    content: " ";
+    position: absolute;
+    top: -250%;
+    left: 50%;
+    margin-left: -116px;
+    border-width: 5px;
+}
+
+.top-info:hover .top-info-tooltip {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.top-info-tooltip::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent;
+}
+
+.top-info-tooltip::after:hover {
+    border-color: black transparent transparent transparent;
+}
+
 .tracks-time-range {
     display: flex;
+    align-items: center;
     gap: .5em;
     margin: 0;
 }
@@ -41,4 +101,10 @@
 
 .track-time-active {
     border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 1250px) {
+    .top-info:hover .top-info-tooltip {
+        background-color: rgba(0, 0, 0, 1);
+    }
 }

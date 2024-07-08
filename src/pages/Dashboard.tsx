@@ -11,19 +11,16 @@ import "../styles/Dashboard.css";
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
   const [error, setError] = useState(false);
-  const [topArtists, setTopArtists] = useState<UserTopArtists>({} as UserTopArtists);
   const [isLoading, setIsLoading] = useState(true);
   const { setToken } = useToken();
    
   async function getDashboard() {
     const userPromise = User.getProfile();
-    const topArtistsPromise = User.getUserTopItems("artists", "short_term");
 
-    Promise.all([userPromise, topArtistsPromise]).then((results) => {
+    Promise.all([userPromise]).then((results) => {
       // results = [user, topArtists, topTracks]
-      if (results[0] && results[1]) {
+      if (results[0]) {
         setUser(results[0]);
-        setTopArtists(results[1]);
       }
     }).catch((err) => {
       setError(true)

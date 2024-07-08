@@ -40,7 +40,7 @@
 .top-items {
     display: flex;
     flex-direction: row;
-    gap: 1em;
+    gap: 2em;
 }
 
 .error {
@@ -51,5 +51,6 @@
 @media screen and (max-width: 1250px)  {
     .top-items {
         flex-direction: column;
+        gap: .5em;
     }
 }

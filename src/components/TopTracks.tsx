@@ -75,9 +75,16 @@ function TopTracks() {
       <div className="tracks-header">
         <span className="tracks-title">Top Tracks</span>
         <ul className="tracks-time-range">
+          <li className="top-info">i
+            <div className="top-info-tooltip">Long: 1 year, Medium: 6 months, Short: 4 weeks</div>
+          </li>
           <li
             className={active === "long_term" ? "track-time-active" : "track-time-inactive"}
             onClick={() => {
+              if (isLoading) {
+                return;
+              }
+
               if (active !== "long_term") {
                 if (Object.keys(topTracksLong).length === 0) {
                   setIsLoading(true);
@@ -93,6 +100,10 @@ function TopTracks() {
           <li
             className={active === "medium_term" ? "track-time-active" : "track-time-inactive"}
             onClick={() => {
+              if (isLoading) {
+                return;
+              }
+              
               if (active !== "medium_term") {
                 if (Object.keys(topTracksMedium).length === 0) {
                   setIsLoading(true);
