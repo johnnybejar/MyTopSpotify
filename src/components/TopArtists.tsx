@@ -8,6 +8,7 @@ import { BounceLoader } from "react-spinners";
 
 function TopArtists() {
   const [topArtistsShort, setTopArtistsShort] = useState<UserTopArtists>({} as UserTopArtists);
+  const [topArtistsMedium, setTopArtistsMedium] = useState<UserTopArtists>({} as UserTopArtists);
   const [topArtistsLong, setTopArtistsLong] = useState<UserTopArtists>({} as UserTopArtists);
   const [active, setActive] = useState("short_term");
   const [isLoading, setIsLoading] = useState(true);
@@ -15,13 +16,15 @@ function TopArtists() {
   const { setToken } = useToken();
   
   async function getArtists() {
-    const topTracksPromise = User.getUserTopItems("artists", active);
+    const topArtistsPromise = User.getUserTopItems("artists", active);
 
-    topTracksPromise.then((res) => {
+    topArtistsPromise.then((res) => {
       if (res) {
         if (active === "short_term") {
           setTopArtistsShort(res);
-        } else if (active === "long_term") {
+        } else if (active === "medium_term") {
+          setTopArtistsMedium(res);
+        } else {
           setTopArtistsLong(res);
         }
       }
@@ -44,6 +47,7 @@ function TopArtists() {
   useEffect(() => {
     if (
       (active === "short_term" && Object.keys(topArtistsShort).length === 0) ||
+      (active === "medium_term" && Object.keys(topArtistsMedium).length === 0) ||
       (active === "long_term" && Object.keys(topArtistsLong).length === 0)
     ) {
       getArtists();
@@ -62,7 +66,6 @@ function TopArtists() {
             onClick={() => {
               if (active !== "long_term") {
                 if (Object.keys(topArtistsLong).length === 0) {
-                  console.log('yoo')
                   setIsLoading(true);
                 }
                 
@@ -71,7 +74,22 @@ function TopArtists() {
             }}
             value="long_term"
           >
-            Long-Term
+            Long
+          </li>
+          <li
+            className={active === "medium_term" ? "track-time-active" : "track-time-inactive"}
+            onClick={() => {
+              if (active !== "medium_term") {
+                if (Object.keys(topArtistsMedium).length === 0) {
+                  setIsLoading(true);
+                }
+                
+                setActive("medium_term");
+              }
+            }}
+            value="medium_term"
+          >
+            Medium
           </li>
           <li 
             className={active === "short_term" ? "track-time-active" : "track-time-inactive"}
@@ -81,7 +99,7 @@ function TopArtists() {
               }
             }}
             value="short-term" >
-            Short-Term
+            Short
           </li>
         </ul>
       </div>
@@ -89,6 +107,12 @@ function TopArtists() {
           <BounceLoader color="white" /> : 
           <div className="track-list">
             {active === "short_term" ? topArtistsShort.items.map((artist, index) => {
+              const props = {
+                artist,
+                rank: index+1,
+              }
+              return <Artist key={artist.id} {...props} />
+            }) : active === "medium_term" ? topArtistsMedium.items.map((artist, index) => {
               const props = {
                 artist,
                 rank: index+1,

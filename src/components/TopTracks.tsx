@@ -9,6 +9,7 @@ import "../styles/TopTracks.css";
 
 function TopTracks() {
   const [topTracksShort, setTopTracksShort] = useState<UserTopTracks>({} as UserTopTracks);
+  const [topTracksMedium, setTopTracksMedium] = useState<UserTopTracks>({} as UserTopTracks);
   const [topTracksLong, setTopTracksLong] = useState<UserTopTracks>({} as UserTopTracks);
   const [active, setActive] = useState("short_term");
   // -1 is the default value for playing, meaning no track is playing
@@ -25,7 +26,9 @@ function TopTracks() {
       if (res) {
         if (active === "short_term") {
           setTopTracksShort(res);
-        } else if (active === "long_term") {
+        } else if (active === "medium_term") {
+          setTopTracksMedium(res);
+        } else {
           setTopTracksLong(res);
         }
       }
@@ -48,6 +51,7 @@ function TopTracks() {
   useEffect(() => {
     if (
       (active === "short_term" && Object.keys(topTracksShort).length === 0) ||
+      (active === "medium_term" && Object.keys(topTracksMedium).length === 0) ||
       (active === "long_term" && Object.keys(topTracksLong).length === 0)
     ) {
       getTracks();
@@ -76,7 +80,6 @@ function TopTracks() {
             onClick={() => {
               if (active !== "long_term") {
                 if (Object.keys(topTracksLong).length === 0) {
-                  console.log('yoo')
                   setIsLoading(true);
                 }
                 
@@ -85,7 +88,22 @@ function TopTracks() {
             }}
             value="long_term"
           >
-            Long-Term
+            Long
+          </li>
+          <li
+            className={active === "medium_term" ? "track-time-active" : "track-time-inactive"}
+            onClick={() => {
+              if (active !== "medium_term") {
+                if (Object.keys(topTracksMedium).length === 0) {
+                  setIsLoading(true);
+                }
+                
+                setActive("medium_term");
+              }
+            }}
+            value="medium_term"
+          >
+            Medium
           </li>
           <li 
             className={active === "short_term" ? "track-time-active" : "track-time-inactive"}
@@ -95,7 +113,7 @@ function TopTracks() {
               }
             }}
             value="short-term" >
-            Short-Term
+            Short
           </li>
         </ul>
       </div>
@@ -103,6 +121,15 @@ function TopTracks() {
           <BounceLoader color="white" /> : 
           <div className="track-list">
             {active === "short_term" ? topTracksShort.items.map((track, index) => {
+              const props = {
+                track,
+                rank: index+1,
+                playing,
+                setPlaying,
+                audio
+              }
+              return <Track key={track.id} {...props} />
+            }) : active === "medium_term" ? topTracksMedium.items.map((track, index) => {
               const props = {
                 track,
                 rank: index+1,
