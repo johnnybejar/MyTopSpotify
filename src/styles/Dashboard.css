@@ -43,6 +43,11 @@
     gap: 1em;
 }
 
+.error {
+    font-size: 2em;
+    color: red;
+}
+
 @media screen and (max-width: 1250px)  {
     .top-items {
         flex-direction: column;

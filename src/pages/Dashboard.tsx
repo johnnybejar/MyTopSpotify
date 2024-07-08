@@ -51,7 +51,7 @@ function Dashboard() {
   }
 
   if (error || Object.keys(user).length === 0) {
-    return <span>Cannot display dashboard due to an error, try re-authenticating or try again later</span>
+    return <span className="error">Cannot display dashboard due to an error, try re-authenticating or try again later</span>
   }
 
   return (

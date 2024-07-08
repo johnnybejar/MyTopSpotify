@@ -18,7 +18,7 @@ function Track(props: TrackProps) {
           <img src={track.album.images[1].url} alt="" className="track-image" />
         </a>
         <div className="track-details">
-          <a className="track-name" href={track.external_urls.spotify} target="_blank">
+          <a className="track-name" href={track.external_urls.spotify} title={track.name} target="_blank">
             {track.name}
           </a>
           <a href={track.artists[0].external_urls.spotify} className="track-artist" target="_blank">{track.artists[0].name}</a>

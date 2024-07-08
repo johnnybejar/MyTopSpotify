@@ -13,7 +13,7 @@ function Artist(props: ArtistProps) {
           <img src={artist.images[0].url} alt="" className="track-image" />
         </a>
         <div className="track-details">
-          <a className="track-name" href={artist.external_urls.spotify} target="_blank">
+          <a className="track-name" href={artist.external_urls.spotify} title={artist.name} target="_blank">
             {artist.name}
           </a>
         </div>
