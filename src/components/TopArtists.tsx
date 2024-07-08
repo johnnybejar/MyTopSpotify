@@ -56,6 +56,10 @@ function TopArtists() {
     console.log("TopArtists render");
   }, [active])
 
+  if (error) {
+    return <span>Cannot display dashboard due to an error, try again later</span>
+  }
+
   return (
     <div className="top-tracks">
       <div className="tracks-header">
