@@ -12,7 +12,7 @@ function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { setToken } = useToken();
+  const { token, setToken } = useToken();
    
   async function getDashboard() {
     const userPromise = User.getProfile();
@@ -41,7 +41,7 @@ function Dashboard() {
   useEffect(() => {
     getDashboard();
     console.log("Dashboard Render");
-  }, []);
+  }, [token]);
 
   if (isLoading) {
     return <BounceLoader color="white" />;

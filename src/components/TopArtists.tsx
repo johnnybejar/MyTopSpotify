@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Auth from "../services/auth";
 import Artist from "./Artist";
 import { BounceLoader } from "react-spinners";
+import "../styles/TopTracks.css";
 
 function TopArtists() {
   const [topArtistsShort, setTopArtistsShort] = useState<UserTopArtists>({} as UserTopArtists);
@@ -37,6 +38,7 @@ function TopArtists() {
           setToken(data.access_token);
           Auth.saveToken(data);
           setError(false);
+          window.location.reload();
         })
       } else {
         toast.error("An error occurred...");
