@@ -33,7 +33,7 @@ async function createAuthorizationUri() {
     localStorage.setItem("CodeVerifier", codeVerifier);
     localStorage.setItem("State", state);
 
-    const scope = "streaming user-read-private user-read-email user-read-currently-playing user-read-recently-played user-top-read playlist-read-collaborative";
+    const scope = "streaming user-read-private user-read-email user-read-playback-state user-read-recently-played user-top-read playlist-read-collaborative";
     const authUrl = new URL("https://accounts.spotify.com/authorize");
 
     const params = {

@@ -7,6 +7,7 @@ import Auth from "../services/auth";
 import TopTracks from "../components/TopTracks";
 import TopArtists from "../components/TopArtists";
 import "../styles/Dashboard.css";
+import Playback from "../components/Playback";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
@@ -59,6 +60,7 @@ function Dashboard() {
         </a>
         <span className="db-greet">Hello, {user.display_name}</span>
       </div>
+      <Playback />
       <div className="top-items">
         <TopTracks />
         <TopArtists />

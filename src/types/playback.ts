@@ -6,7 +6,7 @@ type Playback = {
     timestamp: number;
     progress_ms: number;
     is_playing: boolean;
-    item: Track | Episode;
+    item: Track | null; // Can be an episode, ad, or unknown, so will force it to be a Track or null
     currently_playing_type: string;
     actions: Record<string, boolean>;
 }

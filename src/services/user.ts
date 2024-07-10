@@ -25,7 +25,7 @@ async function getUserTopItems(type: string, timeRange: string) {
                 Authorization: "Bearer " + accessToken
             }
         })
-        
+
         return res.data
     } else {
         return null;
@@ -42,7 +42,7 @@ async function getUserPlaybackState() {
             }
         });
 
-        return res.data
+        return res.data as Playback;
     } else {
         return null;
     }
