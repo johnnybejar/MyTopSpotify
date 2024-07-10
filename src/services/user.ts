@@ -25,6 +25,23 @@ async function getUserTopItems(type: string, timeRange: string) {
                 Authorization: "Bearer " + accessToken
             }
         })
+        
+        return res.data
+    } else {
+        return null;
+    }
+}
+
+async function getUserPlaybackState() {
+    let accessToken = localStorage.getItem("AccessToken");
+
+    if (accessToken) {
+        const res = await axios.get("https://api.spotify.com/v1/me/player", {
+            headers: {
+                Authorization: "Bearer " + accessToken
+            }
+        });
+
         return res.data
     } else {
         return null;
@@ -33,7 +50,8 @@ async function getUserTopItems(type: string, timeRange: string) {
 
 const User = {
     getProfile,
-    getUserTopItems
+    getUserTopItems,
+    getUserPlaybackState
 };
 
 export default User;
