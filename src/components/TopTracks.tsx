@@ -16,7 +16,7 @@ function TopTracks() {
   const [playing, setPlaying] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const { setToken } = useToken();
+  const { token, setToken } = useToken();
   const [audio] = useState(new Audio());
 
   async function getTracks() {
@@ -64,7 +64,7 @@ function TopTracks() {
     setPlaying(-1);
 
     console.log("TopTracks render");
-  }, [active])
+  }, [active, token])
 
   if (error) {
     return <span>Cannot display dashboard due to an error, try again later</span>

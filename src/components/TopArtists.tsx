@@ -14,7 +14,7 @@ function TopArtists() {
   const [active, setActive] = useState("short_term");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const { setToken } = useToken();
+  const { token, setToken } = useToken();
   
   async function getArtists() {
     const topArtistsPromise = User.getUserTopItems("artists", active);
@@ -56,7 +56,7 @@ function TopArtists() {
     }
 
     console.log("TopArtists render");
-  }, [active])
+  }, [active, token])
 
   if (error) {
     return <span>Cannot display dashboard due to an error, try again later</span>
