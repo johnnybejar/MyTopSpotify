@@ -29,8 +29,8 @@
     cursor: text;
 }
 
-.top-info-tooltip {
-    /* visibility: hidden; */
+.top-info .top-info-tooltip {
+    visibility: hidden;
     width: 220px;
     background-color: rgba(0, 0, 0, 0);
     color: rgba(255, 255, 255, 0);
@@ -43,8 +43,6 @@
 }
 
 .top-info-tooltip {
-    content: " ";
-    position: absolute;
     top: -250%;
     left: 50%;
     margin-left: -116px;
@@ -55,21 +53,6 @@
     visibility: visible;
     background-color: rgba(0, 0, 0, 0.5);
     color: rgba(255, 255, 255, 0.9);
-}
-
-.top-info-tooltip::after {
-    content: " ";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent transparent transparent;
-}
-
-.top-info-tooltip::after:hover {
-    border-color: black transparent transparent transparent;
 }
 
 .tracks-time-range {
