@@ -53,7 +53,7 @@ function Playback() {
     }
 
     if (Object.keys(playback).length === 0) {
-        return <div>Currently not listening to anything</div>
+        return <span className="playback-not-listening">Currently not playing anything</span>
     }
 
     return (

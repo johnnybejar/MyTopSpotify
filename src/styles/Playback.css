@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.playback-not-listening {
+    font-size: 2em;
+    font-weight: bold;
+}
+
 .playback-track {
     display: flex;
     /* flex-direction: row; */
