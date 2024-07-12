@@ -6,8 +6,9 @@ import { useToken } from "../context/TokenProvider";
 import Auth from "../services/auth";
 import TopTracks from "../components/TopTracks";
 import TopArtists from "../components/TopArtists";
-import "../styles/Dashboard.css";
 import Playback from "../components/Playback";
+import logout from "../public/logout.png";
+import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
@@ -39,6 +40,11 @@ function Dashboard() {
     }).finally(() => setIsLoading(false));
   }
 
+  const logOut = () => {
+    localStorage.clear();
+    setToken("");
+  }
+
   useEffect(() => {
     getDashboard();
     console.log("Dashboard Render");
@@ -65,6 +71,7 @@ function Dashboard() {
         <TopTracks />
         <TopArtists />
       </div>
+      { localStorage.getItem("AccessToken") ? <img src={logout} className="logout" onClick={logOut} alt="Logout" /> : <></>}
     </div>
   );
 }
