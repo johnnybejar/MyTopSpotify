@@ -41,7 +41,6 @@ function Track(props: TrackProps) {
             ) : 
             <polygon points="0,0 50,30 0,60" fill="#ffffffe6" fillOpacity={.9} />
           }
-          {/* <audio id={"track-preview-" + rank} src={track.preview_url} preload="none"></audio> */}
         </svg>
     </div>
   );

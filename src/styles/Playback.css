@@ -1,0 +1,51 @@
+.playback {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.playback-listening {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.playback-track {
+    display: flex;
+    /* flex-direction: row; */
+    gap: .5em;
+}
+
+.playback-image {
+    height: 100px;
+    border-radius: .5em;
+    border: 2px solid transparent;
+    transition: 200ms;
+}
+.playback-image:hover {
+    border-color: rgba(255, 255, 255, .9);
+}
+
+.playback-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.playback-info-name {
+    color: rgba(255, 255, 255, .9);
+    transition: 200ms;
+}
+.playback-info-name:hover {
+    color: rgba(255, 255, 255, .6);
+}
+
+.playback-info-artist {
+    font-size: .8em;
+    color: rgb(169, 169, 169);
+    transition: 200ms;
+}
+.playback-info-artist:hover {
+    color: rgba(169, 169, 169, .6);
+}
