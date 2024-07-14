@@ -40,6 +40,7 @@
 
 .playback-info-name {
     color: rgba(255, 255, 255, .9);
+    font-weight: bold;
     transition: 200ms;
 }
 .playback-info-name:hover {

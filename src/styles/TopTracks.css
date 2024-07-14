@@ -14,45 +14,48 @@
     font-weight: bold;
 }
 
-.top-info {
+.tracks-range-container {
+    display: flex;
+    gap: .3em;
+}
+
+.top-tooltip {
     position: relative;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    font-size: .6em;
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    list-style: none;
-    cursor: text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
-.top-info .top-info-tooltip {
+.top-tooltip-text {
     visibility: hidden;
-    width: 220px;
-    background-color: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 0);
-    text-align: center;
-    padding: .2em .3em;
-    border-radius: 6px;
+    width: 200px;
+    color: black;
+    font-weight: bold;
+    background-color: #fff;
     position: absolute;
-    z-index: 1;
-    transition: 200ms;
+    bottom: 110%;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    opacity: 0;
+    transition: all .4s;
 }
 
-.top-info-tooltip {
-    top: -250%;
-    left: 50%;
-    margin-left: -116px;
-    border-width: 5px;
+.top-tooltip-text::after {
+    content: '';
+    border-width: 7px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    position: absolute;
+    top: 100%;
+    left: 46.5%;
 }
 
-.top-info:hover .top-info-tooltip {
+.top-tooltip:hover .top-tooltip-text {
     visibility: visible;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+    transform: translateY(-5px);
 }
 
 .tracks-time-range {
@@ -60,6 +63,7 @@
     align-items: center;
     gap: .5em;
     margin: 0;
+    padding: 0;
 }
 
 .track-list {
@@ -87,7 +91,7 @@
 }
 
 @media screen and (max-width: 1250px) {
-    .top-info:hover .top-info-tooltip {
+    /* .top-info:hover .top-info-tooltip {
         background-color: rgba(0, 0, 0, 1);
-    }
+    } */
 }
