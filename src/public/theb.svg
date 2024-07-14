@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <defs/>
-  <rect x="159.455" y="190.471" width="181.089" height="119.058" style="fill: rgb(34, 34, 34); fill-rule: nonzero; paint-order: fill; fill-opacity: 0.81; stroke: rgba(255, 255, 255, 0.894);"/>
-  <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" cx="250" cy="250" rx="12.401" ry="11.901"/>
-  <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" cx="299.331" cy="250" rx="12.401" ry="11.901"/>
-  <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);" cx="200.568" cy="250" rx="12.401" ry="11.901"/>
-</svg>
