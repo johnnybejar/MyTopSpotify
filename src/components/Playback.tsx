@@ -63,14 +63,14 @@ function Playback() {
                 <a href={playback.item?.album.external_urls.spotify} className="playback-image-link" target="_blank">
                     <img src={playback.item?.album.images[0].url} className="playback-image" alt="album-cover" />
                 </a>
-                <span className="playback-info">
-                    <a href={playback.item?.external_urls.spotify} className="playback-info-name" target="_blank">
+                <div className="playback-info">
+                    <a href={playback.item?.external_urls.spotify} className="playback-info-name" title={playback.item?.name} target="_blank">
                         {playback.item?.name}
                     </a>
-                    <a href={playback.item?.artists[0].external_urls.spotify} className="playback-info-artist" target="_blank">
+                    <a href={playback.item?.artists[0].external_urls.spotify} className="playback-info-artist" title={playback.item?.artists[0].name} target="_blank">
                         {playback.item?.artists[0].name}
                     </a>
-                </span>
+                </div>
             </div>
         </div> 
     );
