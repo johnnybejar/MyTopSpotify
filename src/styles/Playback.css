@@ -4,6 +4,19 @@
     gap: 8px;
 }
 
+.playback-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+}
+
+.playback-spotify-img {
+    width: 65px;
+    height: 65px;
+}
+
 .playback-listening {
     font-size: 1.5em;
     font-weight: bold;
@@ -63,6 +76,11 @@
 @media screen and (max-width: 620px) {
     .playback-not-listening {
         font-size: 1.2em;
+    }
+    
+    .playback-spotify-img {
+        width: 40px;
+        height: 40px;
     }
 
     .playback-image {
