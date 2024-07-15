@@ -59,3 +59,26 @@
 .playback-info-artist:hover {
     color: rgba(169, 169, 169, .6);
 }
+
+@media screen and (max-width: 620px) {
+    .playback-not-listening {
+        font-size: 1.2em;
+    }
+
+    .playback-image {
+        width: 50px;
+        height: 50px
+    }
+
+    .playback-info {
+        max-width: 300px;
+    }
+
+    .playback-info-name {
+        font-size: 1.4em;
+    }
+
+    .playback-info-artist {
+        font-size: 1em;
+    }
+}

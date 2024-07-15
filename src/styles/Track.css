@@ -21,7 +21,6 @@
 
 .track-name {
     max-width: 420px;
-    width: auto;
     font-weight: bold;
     transition: 200ms;
     color: rgba(255, 255, 255, 0.9);
@@ -68,4 +67,24 @@
 }
 .track-button:hover {
     opacity: .5;
+}
+
+@media screen and (max-width: 620px) {
+    .track {
+        font-size: 1.15em;
+    }
+
+    .track-name {
+        max-width: 240px;
+    }
+    
+    .track-image-href {
+        width: 35px;
+        height: 35px;
+    }
+
+    .track-image {
+        width: 35px;
+        height: 35px;
+    }
 }

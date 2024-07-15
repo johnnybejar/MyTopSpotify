@@ -90,8 +90,16 @@
     border-bottom-color: rgba(255, 255, 255, 0.9);
 }
 
-@media screen and (max-width: 1250px) {
-    /* .top-info:hover .top-info-tooltip {
-        background-color: rgba(0, 0, 0, 1);
-    } */
+@media screen and (max-width: 620px) {
+    .top-tracks {
+        width: 350px;
+    }
+
+    .tracks-header {
+        font-size: 1.25em;
+    }
+
+    .track-list {
+        border-right: 2px solid white;
+    }
 }
