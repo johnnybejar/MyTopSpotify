@@ -28,8 +28,10 @@
 }
 
 .top-tooltip-text {
+    display: flex;
+    flex-direction: column;
     visibility: hidden;
-    width: 200px;
+    width: 143px;
     color: black;
     font-weight: bold;
     background-color: #fff;
