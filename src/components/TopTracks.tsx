@@ -77,8 +77,8 @@ function TopTracks() {
         <div className="tracks-range-container">
           <div className="top-tooltip">
             <span className="top-tooltip-text">Long: 1 year, Medium: 6 months, Short: 4 weeks</span>
-            <svg className="top-tooltip-icon" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="22px" width="22px" xmlns="http://www.w3.org/2000/svg">
-              <path fill="none" stroke-width="2" d="M16.5,18 L12,22.5 L7.5,18 L1,18 L1,1 L23,1 L23,18 L16.5,18 Z M6,10 L7,10 L7,9 L6,9 L6,10 Z M11.5,10 L12.5,10 L12.5,9 L11.5,9 L11.5,10 Z M17,10 L18,10 L18,9 L17,9 L17,10 Z" />
+            <svg className="top-tooltip-icon" stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="22px" width="22px" xmlns="http://www.w3.org/2000/svg">
+              <path fill="none" strokeWidth="2" d="M16.5,18 L12,22.5 L7.5,18 L1,18 L1,1 L23,1 L23,18 L16.5,18 Z M6,10 L7,10 L7,9 L6,9 L6,10 Z M11.5,10 L12.5,10 L12.5,9 L11.5,9 L11.5,10 Z M17,10 L18,10 L18,9 L17,9 L17,10 Z" />
             </svg>
           </div>
           <ul className="tracks-time-range">

@@ -19,10 +19,9 @@ function Dashboard() {
   async function getDashboard() {
     const userPromise = User.getProfile();
 
-    Promise.all([userPromise]).then((results) => {
-      // results = [user, topArtists, topTracks]
-      if (results[0]) {
-        setUser(results[0]);
+    userPromise.then((results) => {
+      if (results) {
+        setUser(results);
       }
     }).catch((err) => {
       setError(true)
