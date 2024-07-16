@@ -8,6 +8,7 @@ import Callback from './pages/Callback';
 import { useToken } from './context/TokenProvider';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Footer from './components/Footer';
 
 function App() {
   const {token, setToken} = useToken();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/callback" element={<Callback />} />
         </Routes>
       </div>
+      <Footer />
       <ToastContainer stacked={true} position="bottom-right" theme="dark" />
     </>
   );

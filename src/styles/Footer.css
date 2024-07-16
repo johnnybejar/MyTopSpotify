@@ -1,0 +1,28 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    margin: auto;
+    margin-top: .5em;
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.9);
+    border-top: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.footer-coolguy {
+    font-weight: bold;
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.9);
+    transition: 200ms all;
+}
+
+.footer-coolguy:hover {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-note {
+    font-size: .8em;
+    color: rgba(255, 255, 255, 0.6);
+}
