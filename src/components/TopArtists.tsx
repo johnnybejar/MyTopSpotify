@@ -130,7 +130,7 @@ function TopArtists() {
         </div>
       </div>
         { isLoading ? 
-          <BounceLoader color="white" /> : 
+          <BounceLoader color="white" size={240} className="loading" /> : 
           <div className="track-list">
             {active === "short_term" ? topArtistsShort.items.map((artist, index) => {
               const props = {

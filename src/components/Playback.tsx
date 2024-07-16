@@ -46,7 +46,7 @@ function Playback() {
     }, [token])
 
     if (isLoading) {
-        return <BounceLoader color="white" />;
+        return <BounceLoader color="white" className="loading" />;
     }
 
     if (error) {
