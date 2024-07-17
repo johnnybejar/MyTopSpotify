@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
-const redirectUri = "http://localhost:5173/callback";
+const redirectUri = import.meta.env.VITE_ENV === "development" ? "http://localhost:5173/callback" : "https://topspotifystats.netlify.app/callback"
+
 
 function generateRandomString(length: number) {
     let text = '';
