@@ -46,7 +46,6 @@ function Dashboard() {
 
   useEffect(() => {
     getDashboard();
-    console.log("Dashboard Render");
   }, [token]);
 
   if (isLoading) {

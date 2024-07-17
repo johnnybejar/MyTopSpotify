@@ -62,8 +62,6 @@ function TopTracks() {
     // Needed to pause the audio and reset playing when switching time ranges
     audio.pause();
     setPlaying(-1);
-
-    console.log("TopTracks render");
   }, [active, token])
 
   if (error) {

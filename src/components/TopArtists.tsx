@@ -30,7 +30,7 @@ function TopArtists() {
         }
       }
     }).catch((err) => {
-      setError(true)
+      setError(true);
       if (err && err.response.status === 401) {
         toast("Expired/Revoked token, re-authenticating...")
         const res = Auth.refreshToken();
@@ -54,8 +54,6 @@ function TopArtists() {
     ) {
       getArtists();
     }
-
-    console.log("TopArtists render");
   }, [active, token])
 
   if (error) {

@@ -41,7 +41,6 @@ function Playback() {
 
     useEffect(() => {
         const interval = setInterval(() => getPlaybackState(), 5000);
-        console.log("Playback Render");
         return () => { clearInterval(interval) };
     }, [token])
 

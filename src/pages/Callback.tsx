@@ -5,7 +5,7 @@ import { useToken } from "../context/TokenProvider";
 
 function Callback() {
     const [msg, setMsg] = useState("")
-    const {token, setToken} = useToken();
+    const { setToken } = useToken();
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code')!;
     const state = urlParams.get('state')!;

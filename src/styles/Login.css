@@ -1,21 +1,56 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .4em;
+}
+
 .autheticate {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-    border: 2px solid white;
-    border-radius: 2em;
-    padding: .4em;
-    transition: 200ms;
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-size: 2em;
-  }
-  .autheticate:hover {
-    background-color: #000000;
-    cursor: pointer;
-  }
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 2em;
+  padding: .4em;
+  transition: 200ms;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 2em;
+}
+.autheticate:hover {
+  background-color: #000000;
+  cursor: pointer;
+}
   
-  .spotify-logo {
-    max-height: 2em;
-    margin-left: 2px;
+.spotify-logo {
+  max-height: 2em;
+  margin-left: 2px;
+}
+
+.website-info {
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+@media screen and (max-width: 800px)  {
+  .autheticate {
+      font-size: 1.2em;
   }
+
+  .website-info {
+    max-width: 420px;
+  }
+}
+
+@media screen and (max-width: 500px)  {
+  .autheticate {
+      font-size: .8em;
+  }
+
+  .website-info {
+    max-width: 300px;
+    font-size: 1em;
+  }
+}
