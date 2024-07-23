@@ -6,9 +6,8 @@ async function fetchClientId() {
         if (response.status !== 200) {
             throw new Error("Failed to fetch credentials")
         }
-        const data = response.data;
     
-        return data.clientId;
+        return response.data;
         
     } catch (err) {
         console.log("Error fetching spotify credentials: ", err);

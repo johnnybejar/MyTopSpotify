@@ -1,7 +1,7 @@
 import axios from "axios";
 import fetchClientId from "./fetchClientId";
 
-const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+// const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const redirectUri = import.meta.env.VITE_ENV === "development" ? "http://localhost:8888/callback" : "https://topspotifystats.netlify.app/callback"
 
 
@@ -35,7 +35,7 @@ async function createAuthorizationUri() {
     localStorage.setItem("CodeVerifier", codeVerifier);
     localStorage.setItem("State", state);
 
-    // const CLIENT_ID = await fetchClientId();
+    const CLIENT_ID = await fetchClientId();
 
     const scope = "user-read-private user-read-playback-state user-top-read";
     const authUrl = new URL("https://accounts.spotify.com/authorize");
@@ -63,7 +63,7 @@ async function generateToken(state: string, code: string) {
         return null;
     }
 
-    // const CLIENT_ID = await fetchClientId();
+    const CLIENT_ID = await fetchClientId();
 
     const parameters = new URLSearchParams({
         client_id: CLIENT_ID,
@@ -90,7 +90,7 @@ async function generateToken(state: string, code: string) {
 async function refreshToken() {
     const refreshToken = localStorage.getItem("RefreshToken");
 
-    // const CLIENT_ID = await fetchClientId();
+    const CLIENT_ID = await fetchClientId();
 
     const body = new URLSearchParams({
         grant_type: "refresh_token",
