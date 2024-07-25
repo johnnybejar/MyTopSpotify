@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import Auth from "../services/auth";
 import { useToken } from "../context/TokenProvider";
+import { toast } from "react-toastify";
 
 function Callback() {
     const [msg, setMsg] = useState("")
@@ -23,7 +24,10 @@ function Callback() {
                 setToken(tokenData.access_token);
                 navigate("/");
             } catch {
-                setTimeout(() => {setMsg("Error retrieving access token")}, 2000);
+                setTimeout(() => {
+                    toast.error("Error retrieving access token");
+                    navigate("/");
+                }, 2000);
             }
         })
     }, [])
