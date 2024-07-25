@@ -26,7 +26,6 @@ function Playback() {
             setIsLoading(false);
         } catch (err: any) {
             // TODO: 'any' used here, try to find an alternative if possible
-            setError(true)
             if (err && err.response.status === 401) {
                 toast("Expired/Revoked token, re-authenticating...")
                 const res = await Auth.refreshToken();
@@ -34,6 +33,7 @@ function Playback() {
                 Auth.saveToken(res);
                 setError(false);  
             } else {
+                setError(true)
                 toast.error("An error occurred...");
             }
         }

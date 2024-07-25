@@ -24,16 +24,21 @@ function Dashboard() {
         setUser(results);
       }
     }).catch((err) => {
-      setError(true)
       if (err && err.response.status === 401) {
-        toast("Expired/Revoked token, re-authenticating...")
+        console.log(isLoading);
+        toast("Expired/Revoked token, re-authenticating...");
         const res = Auth.refreshToken();
         res.then((data) => {
           setToken(data.access_token);
           Auth.saveToken(data);
-          setError(false);
         })
-      } else {
+      } else if (err && err.response.status === 403) {
+        toast.error("User is not registered...");
+        localStorage.clear();
+        setToken("");
+      }
+      else {
+        setError(true)
         toast.error("An error occurred...");
       }
     }).finally(() => setIsLoading(false));

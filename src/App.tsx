@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Footer from './components/Footer';
 
 function App() {
-  const {token, setToken} = useToken();
+  const { token, setToken } = useToken();
 
   useEffect(() => {
     const t = Auth.getToken();

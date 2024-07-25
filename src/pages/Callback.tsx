@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Auth from "../services/auth";
 import { useToken } from "../context/TokenProvider";
 import { toast } from "react-toastify";
@@ -14,7 +14,13 @@ function Callback() {
 
     useEffect(() => {
         if (urlParams.get('error')) {
-            setMsg(`An error occurred: ${urlParams.get('error')}`)
+            const err = urlParams.get('error');
+            if (err == "access_denied") {
+                toast.error("Access denied...");
+                navigate("/");
+            }
+            setMsg(`An error occurred: ${urlParams.get('error')}`);
+            setTimeout(() => {navigate("/")}, 3000);
             return;
         }
 
