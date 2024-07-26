@@ -12,7 +12,7 @@ import "../styles/Dashboard.css";
 
 function Dashboard() {
   const [user, setUser] = useState<User>({} as User)
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const { token, setToken } = useToken();
    
@@ -25,7 +25,6 @@ function Dashboard() {
       }
     }).catch((err) => {
       if (err && err.response.status === 401) {
-        console.log(isLoading);
         toast("Expired/Revoked token, re-authenticating...");
         const res = Auth.refreshToken();
         res.then((data) => {
@@ -38,7 +37,7 @@ function Dashboard() {
         setToken("");
       }
       else {
-        setError(true)
+        setError("Could not fetch user data")
         toast.error("An error occurred...");
       }
     }).finally(() => setIsLoading(false));
@@ -53,12 +52,12 @@ function Dashboard() {
     getDashboard();
   }, [token]);
 
-  if (isLoading) {
+  if (isLoading || Object.keys(user).length === 0) {
     return <BounceLoader color="white" />;
   }
 
-  if (error || Object.keys(user).length === 0) {
-    return <span className="error">Cannot display dashboard due to an error, try re-authenticating or try again later</span>
+  if (error) {
+    return <span className="error">Cannot display dashboard due to an error: {error}</span>
   }
 
   return (
