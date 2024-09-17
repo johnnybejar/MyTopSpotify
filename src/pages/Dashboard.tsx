@@ -32,7 +32,9 @@ function Dashboard() {
           Auth.saveToken(data);
         })
       } else if (err && err.response.status === 403) {
-        toast.error("User is not registered...");
+        toast.error("Not authorized, you may not be whitelisted...", {
+          autoClose: 10000,
+        });
         localStorage.clear();
         setToken("");
       }

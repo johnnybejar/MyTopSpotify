@@ -11,6 +11,9 @@ function Login() {
       <div className="website-info">
         This website lets you check your top artists and top tracks from the last 4 weeks, 6 months, and 1 year!
       </div>
+      <div className="website-info">
+        You must be whitelisted to access this service. If you would like to, contact me below with your spotify email and I'll add you!
+      </div>
     </div>
   );
 }
